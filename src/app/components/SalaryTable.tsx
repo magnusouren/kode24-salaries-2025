@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SalaryData } from '../page';
+import { SalaryData } from '../types';
 
 interface SalaryTableProps {
     data: SalaryData[];
@@ -69,9 +69,13 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
 
     if (data.length === 0) {
         return (
-            <div className='bg-white shadow rounded-lg p-6'>
-                <h2 className='text-2xl font-bold mb-4'>Lønnsdata</h2>
-                <p>Ingen data matcher de valgte filtrene.</p>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h2 className='text-2xl font-bold mb-4 text-gray-900 dark:text-white'>
+                    Lønnsdata
+                </h2>
+                <p className='text-gray-600 dark:text-gray-400'>
+                    Ingen data matcher de valgte filtrene.
+                </p>
             </div>
         );
     }
@@ -80,7 +84,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
         <div className='bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-200 dark:border-gray-700'>
             <div className='p-6 border-b border-gray-200 dark:border-gray-600'>
                 <div className='mb-4'>
-                    <h2 className='text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100'>
+                    <h2 className='text-2xl font-bold mb-2 text-gray-900 dark:text-white'>
                         📋 Detaljert lønnsdata
                     </h2>
                     <p className='text-gray-600 dark:text-gray-400 text-sm mb-3'>
@@ -128,49 +132,49 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                 Kjønn {getSortIcon('kjønn')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('års utdanning')}
                             >
                                 Utdanning {getSortIcon('års utdanning')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('års erfaring')}
                             >
                                 Erfaring {getSortIcon('års erfaring')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('arbeidssted')}
                             >
                                 Arbeidssted {getSortIcon('arbeidssted')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('jobbtype')}
                             >
                                 Jobbtype {getSortIcon('jobbtype')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('fag')}
                             >
                                 Fagområde {getSortIcon('fag')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('lønn')}
                             >
                                 Lønn {getSortIcon('lønn')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('inkludert bonus?')}
                             >
                                 Bonus {getSortIcon('inkludert bonus?')}
                             </th>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() =>
                                     handleSort('inkludert provisjon?')
                                 }
@@ -185,21 +189,21 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                 key={index}
                                 className='hover:bg-gray-50 dark:hover:bg-gray-700'
                             >
-                                <td className='px-4 py-4 whitespace-nowrap text-sm'>
+                                <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100'>
                                     <span className='capitalize'>
                                         {item.kjønn}
                                     </span>
                                 </td>
-                                <td className='px-4 py-4 whitespace-nowrap text-sm'>
+                                <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100'>
                                     {item['års utdanning']} år
                                 </td>
-                                <td className='px-4 py-4 whitespace-nowrap text-sm'>
+                                <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100'>
                                     {item['års erfaring']} år
                                 </td>
-                                <td className='px-4 py-4 whitespace-nowrap text-sm'>
+                                <td className='px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100'>
                                     {item.arbeidssted}
                                 </td>
-                                <td className='px-4 py-4 text-sm'>
+                                <td className='px-4 py-4 text-sm text-gray-900 dark:text-gray-100'>
                                     <div
                                         className='max-w-xs truncate'
                                         title={item.jobbtype}
@@ -207,7 +211,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                         {item.jobbtype}
                                     </div>
                                 </td>
-                                <td className='px-4 py-4 text-sm'>
+                                <td className='px-4 py-4 text-sm text-gray-900 dark:text-gray-100'>
                                     <div
                                         className='max-w-xs truncate'
                                         title={item.fag}
@@ -215,7 +219,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                         {item.fag}
                                     </div>
                                 </td>
-                                <td className='px-4 py-4 whitespace-nowrap text-sm font-medium'>
+                                <td className='px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100'>
                                     {item.lønn.toLocaleString()} kr
                                 </td>
                                 <td className='px-4 py-4 whitespace-nowrap text-sm'>
@@ -223,7 +227,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                         className={`px-2 py-1 rounded text-xs font-medium ${
                                             item['inkludert bonus?']
                                                 ? 'bg-green-100 text-green-800 dark:bg-green-800/20 dark:text-green-200'
-                                                : 'bg-gray-100 text-gray-800 dark:bg-red-700/20 dark:text-gray-300'
+                                                : 'bg-gray-100 text-gray-800 dark:bg-gray-700/50 dark:text-gray-300'
                                         }`}
                                     >
                                         {item['inkludert bonus?']
@@ -235,8 +239,8 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                     <span
                                         className={`px-2 py-1 rounded text-xs font-medium ${
                                             item['inkludert provisjon?']
-                                                ? 'bg-blue-100 text-blue-800 dark:bg-green-800/20 dark:text-green-200'
-                                                : 'bg-gray-100 text-gray-800 dark:bg-red-700/20 dark:text-gray-300'
+                                                ? 'bg-blue-100 text-blue-800 dark:bg-blue-800/20 dark:text-blue-200'
+                                                : 'bg-gray-100 text-gray-800 dark:bg-gray-700/50 dark:text-gray-300'
                                         }`}
                                     >
                                         {item['inkludert provisjon?']
@@ -252,8 +256,8 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-                <div className='px-6 py-4 border-t flex items-center justify-between'>
-                    <div className='text-sm text-gray-700'>
+                <div className='px-6 py-4 border-t border-gray-200 dark:border-gray-600 flex items-center justify-between'>
+                    <div className='text-sm text-gray-700 dark:text-gray-300'>
                         Viser {startIndex + 1} til{' '}
                         {Math.min(startIndex + itemsPerPage, data.length)} av{' '}
                         {data.length} resultater
@@ -262,7 +266,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
-                            className='px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50'
+                            className='px-3 py-1 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100'
                         >
                             Forrige
                         </button>
@@ -277,7 +281,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                         className={`px-3 py-1 border rounded ${
                                             currentPage === page
                                                 ? 'bg-blue-500 text-white border-blue-500'
-                                                : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                                                : 'border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100'
                                         }`}
                                     >
                                         {page}
@@ -287,13 +291,15 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                         )}
                         {totalPages > 5 && (
                             <>
-                                <span className='px-3 py-1'>...</span>
+                                <span className='px-3 py-1 text-gray-500 dark:text-gray-400'>
+                                    ...
+                                </span>
                                 <button
                                     onClick={() => handlePageChange(totalPages)}
                                     className={`px-3 py-1 border rounded ${
                                         currentPage === totalPages
                                             ? 'bg-blue-500 text-white border-blue-500'
-                                            : 'hover:bg-gray-50'
+                                            : 'border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100'
                                     }`}
                                 >
                                     {totalPages}
@@ -303,7 +309,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                         <button
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
-                            className='px-3 py-1 border rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50'
+                            className='px-3 py-1 border border-gray-300 dark:border-gray-600 rounded disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100'
                         >
                             Neste
                         </button>

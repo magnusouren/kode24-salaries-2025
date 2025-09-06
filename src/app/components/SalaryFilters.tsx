@@ -1,4 +1,4 @@
-import { SalaryData, FilterState } from '../page';
+import { SalaryData, FilterState } from '../types';
 
 interface SalaryFiltersProps {
     data: SalaryData[];

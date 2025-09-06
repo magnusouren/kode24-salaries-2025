@@ -1,4 +1,4 @@
-import { SalaryData } from '../page';
+import { SalaryData } from '../types';
 
 interface CareerProgressionProps {
     data: SalaryData[];
@@ -98,7 +98,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p className='text-gray-700 dark:text-gray-300 dark:text-gray-300'>
+                                    <p className='text-gray-700 dark:text-gray-300'>
                                         {milestone.description}
                                     </p>
                                 </div>

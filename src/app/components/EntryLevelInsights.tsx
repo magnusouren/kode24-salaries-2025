@@ -1,4 +1,4 @@
-import { SalaryData } from '../page';
+import { SalaryData } from '../types';
 
 interface EntryLevelInsightsProps {
     data: SalaryData[];

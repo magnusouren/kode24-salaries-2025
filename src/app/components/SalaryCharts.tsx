@@ -1,4 +1,4 @@
-import { SalaryData } from '../page';
+import { SalaryData } from '../types';
 
 interface SalaryChartsProps {
     data: SalaryData[];
@@ -359,6 +359,668 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                     ))}
                 </div>
             </div>
+
+            {/* Salary Trend Line Chart */}
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h3 className='text-lg font-medium mb-6 text-gray-900 dark:text-white'>
+                    💹 Salary Progression Trend
+                </h3>
+                <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
+                    Average and median salary progression over years of
+                    experience. Shows career growth patterns.
+                </p>
+
+                <div className='relative h-80'>
+                    <svg viewBox='0 0 800 300' className='w-full h-full'>
+                        {(() => {
+                            const trendData = createSalaryTrendData(data);
+                            if (trendData.length === 0) return null;
+
+                            const maxSalary = Math.max(
+                                ...trendData.map((d) => d.maxSalary)
+                            );
+                            const minSalary = Math.min(
+                                ...trendData.map((d) => d.minSalary)
+                            );
+                            const maxYears = Math.max(
+                                ...trendData.map((d) => d.years)
+                            );
+
+                            const scaleX = (years: number) =>
+                                (years / maxYears) * 700 + 50;
+                            const scaleY = (salary: number) =>
+                                250 -
+                                ((salary - minSalary) /
+                                    (maxSalary - minSalary)) *
+                                    200;
+
+                            // Create path for average salary line
+                            const avgPath = trendData
+                                .map(
+                                    (d, i) =>
+                                        `${i === 0 ? 'M' : 'L'} ${scaleX(
+                                            d.years
+                                        )} ${scaleY(d.avgSalary)}`
+                                )
+                                .join(' ');
+
+                            // Create path for median salary line
+                            const medianPath = trendData
+                                .map(
+                                    (d, i) =>
+                                        `${i === 0 ? 'M' : 'L'} ${scaleX(
+                                            d.years
+                                        )} ${scaleY(d.medianSalary)}`
+                                )
+                                .join(' ');
+
+                            return (
+                                <>
+                                    {/* Grid lines */}
+                                    {[
+                                        0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20,
+                                    ].map((year) => (
+                                        <line
+                                            key={year}
+                                            x1={scaleX(year)}
+                                            y1={50}
+                                            x2={scaleX(year)}
+                                            y2={250}
+                                            stroke='currentColor'
+                                            strokeWidth={
+                                                year % 5 === 0 ? '1' : '0.5'
+                                            }
+                                            className='text-gray-200 dark:text-gray-600'
+                                            opacity={
+                                                year % 5 === 0 ? '0.5' : '0.2'
+                                            }
+                                        />
+                                    ))}
+
+                                    {/* Salary grid lines */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <line
+                                                key={i}
+                                                x1={50}
+                                                y1={scaleY(salary)}
+                                                x2={750}
+                                                y2={scaleY(salary)}
+                                                stroke='currentColor'
+                                                strokeWidth='0.5'
+                                                className='text-gray-200 dark:text-gray-600'
+                                                opacity='0.3'
+                                            />
+                                        );
+                                    })}
+
+                                    {/* Average salary line */}
+                                    <path
+                                        d={avgPath}
+                                        fill='none'
+                                        stroke='#3B82F6'
+                                        strokeWidth='3'
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                    />
+
+                                    {/* Median salary line */}
+                                    <path
+                                        d={medianPath}
+                                        fill='none'
+                                        stroke='#10B981'
+                                        strokeWidth='3'
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        strokeDasharray='5,5'
+                                    />
+
+                                    {/* Data points for average */}
+                                    {trendData.map((d, i) => (
+                                        <circle
+                                            key={`avg-${i}`}
+                                            cx={scaleX(d.years)}
+                                            cy={scaleY(d.avgSalary)}
+                                            r='4'
+                                            fill='#3B82F6'
+                                            className='hover:r-6 transition-all cursor-pointer'
+                                        />
+                                    ))}
+
+                                    {/* Data points for median */}
+                                    {trendData.map((d, i) => (
+                                        <circle
+                                            key={`median-${i}`}
+                                            cx={scaleX(d.years)}
+                                            cy={scaleY(d.medianSalary)}
+                                            r='3'
+                                            fill='#10B981'
+                                            className='hover:r-5 transition-all cursor-pointer'
+                                        />
+                                    ))}
+
+                                    {/* X-axis labels */}
+                                    {[0, 5, 10, 15, 20].map((year) => (
+                                        <text
+                                            key={year}
+                                            x={scaleX(year)}
+                                            y={270}
+                                            textAnchor='middle'
+                                            className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                        >
+                                            {year}
+                                        </text>
+                                    ))}
+
+                                    {/* Y-axis labels */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <text
+                                                key={i}
+                                                x={40}
+                                                y={scaleY(salary) + 3}
+                                                textAnchor='end'
+                                                className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                            >
+                                                {(salary / 1000).toFixed(0)}k
+                                            </text>
+                                        );
+                                    })}
+
+                                    {/* Axis labels */}
+                                    <text
+                                        x={400}
+                                        y={295}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                    >
+                                        Years of Experience
+                                    </text>
+                                    <text
+                                        x={20}
+                                        y={150}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                        transform='rotate(-90 20 150)'
+                                    >
+                                        Salary (NOK)
+                                    </text>
+                                </>
+                            );
+                        })()}
+                    </svg>
+
+                    {/* Legend */}
+                    <div className='flex justify-center mt-4 space-x-6'>
+                        <div className='flex items-center'>
+                            <div className='w-4 h-0.5 bg-blue-500 mr-2'></div>
+                            <span className='text-sm text-gray-600 dark:text-gray-300'>
+                                Average Salary
+                            </span>
+                        </div>
+                        <div className='flex items-center'>
+                            <div className='w-4 h-0.5 bg-green-500 mr-2 border-dashed border-t-2 border-green-500'></div>
+                            <span className='text-sm text-gray-600 dark:text-gray-300'>
+                                Median Salary
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Salary Distribution Dot Chart */}
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h3 className='text-lg font-medium mb-6 text-gray-900 dark:text-white'>
+                    🎯 Salary Distribution & Outliers
+                </h3>
+                <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
+                    Each dot represents an individual salary. Red dots indicate
+                    statistical outliers (very high/low salaries).
+                </p>
+
+                <div className='relative h-96'>
+                    <svg viewBox='0 0 800 350' className='w-full h-full'>
+                        {(() => {
+                            const outliers = detectOutliers(data);
+                            const normalData = data.filter(
+                                (item) => !outliers.includes(item)
+                            );
+
+                            const maxSalary = Math.max(
+                                ...data.map((d) => d.lønn)
+                            );
+                            const minSalary = Math.min(
+                                ...data.map((d) => d.lønn)
+                            );
+                            const maxExp = Math.max(
+                                ...data.map((d) => d['års erfaring'])
+                            );
+
+                            const scaleX = (exp: number) =>
+                                (exp / Math.min(maxExp, 25)) * 700 + 50;
+                            const scaleY = (salary: number) =>
+                                300 -
+                                ((salary - minSalary) /
+                                    (maxSalary - minSalary)) *
+                                    250;
+
+                            // Add some jitter to prevent overlapping
+                            const addJitter = () => (Math.random() - 0.5) * 20;
+
+                            return (
+                                <>
+                                    {/* Grid lines */}
+                                    {[0, 5, 10, 15, 20, 25].map((exp) => (
+                                        <line
+                                            key={exp}
+                                            x1={scaleX(exp)}
+                                            y1={50}
+                                            x2={scaleX(exp)}
+                                            y2={300}
+                                            stroke='currentColor'
+                                            strokeWidth={
+                                                exp % 5 === 0 ? '1' : '0.5'
+                                            }
+                                            className='text-gray-200 dark:text-gray-600'
+                                            opacity={
+                                                exp % 5 === 0 ? '0.5' : '0.2'
+                                            }
+                                        />
+                                    ))}
+
+                                    {/* Salary grid lines */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <line
+                                                key={i}
+                                                x1={50}
+                                                y1={scaleY(salary)}
+                                                x2={750}
+                                                y2={scaleY(salary)}
+                                                stroke='currentColor'
+                                                strokeWidth='0.5'
+                                                className='text-gray-200 dark:text-gray-600'
+                                                opacity='0.3'
+                                            />
+                                        );
+                                    })}
+
+                                    {/* Normal data points */}
+                                    {normalData.slice(0, 500).map(
+                                        (
+                                            item,
+                                            i // Limit for performance
+                                        ) => (
+                                            <circle
+                                                key={`normal-${i}`}
+                                                cx={
+                                                    scaleX(
+                                                        Math.min(
+                                                            item[
+                                                                'års erfaring'
+                                                            ],
+                                                            25
+                                                        )
+                                                    ) + addJitter()
+                                                }
+                                                cy={
+                                                    scaleY(item.lønn) +
+                                                    addJitter()
+                                                }
+                                                r='2'
+                                                fill='#3B82F6'
+                                                opacity='0.6'
+                                                className='hover:r-4 hover:opacity-100 transition-all cursor-pointer'
+                                            />
+                                        )
+                                    )}
+
+                                    {/* Outlier data points */}
+                                    {outliers.slice(0, 100).map(
+                                        (
+                                            item,
+                                            i // Limit for performance
+                                        ) => (
+                                            <circle
+                                                key={`outlier-${i}`}
+                                                cx={
+                                                    scaleX(
+                                                        Math.min(
+                                                            item[
+                                                                'års erfaring'
+                                                            ],
+                                                            25
+                                                        )
+                                                    ) + addJitter()
+                                                }
+                                                cy={
+                                                    scaleY(item.lønn) +
+                                                    addJitter()
+                                                }
+                                                r='3'
+                                                fill='#EF4444'
+                                                opacity='0.8'
+                                                className='hover:r-5 hover:opacity-100 transition-all cursor-pointer'
+                                            />
+                                        )
+                                    )}
+
+                                    {/* X-axis labels */}
+                                    {[0, 5, 10, 15, 20, 25].map((exp) => (
+                                        <text
+                                            key={exp}
+                                            x={scaleX(exp)}
+                                            y={320}
+                                            textAnchor='middle'
+                                            className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                        >
+                                            {exp}
+                                        </text>
+                                    ))}
+
+                                    {/* Y-axis labels */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <text
+                                                key={i}
+                                                x={40}
+                                                y={scaleY(salary) + 3}
+                                                textAnchor='end'
+                                                className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                            >
+                                                {(salary / 1000).toFixed(0)}k
+                                            </text>
+                                        );
+                                    })}
+
+                                    {/* Axis labels */}
+                                    <text
+                                        x={400}
+                                        y={345}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                    >
+                                        Years of Experience
+                                    </text>
+                                    <text
+                                        x={20}
+                                        y={175}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                        transform='rotate(-90 20 175)'
+                                    >
+                                        Salary (NOK)
+                                    </text>
+                                </>
+                            );
+                        })()}
+                    </svg>
+
+                    {/* Legend and Statistics */}
+                    <div className='flex justify-between items-center mt-4'>
+                        <div className='flex space-x-6'>
+                            <div className='flex items-center'>
+                                <div className='w-3 h-3 bg-blue-500 rounded-full mr-2 opacity-60'></div>
+                                <span className='text-sm text-gray-600 dark:text-gray-300'>
+                                    Normal Range
+                                </span>
+                            </div>
+                            <div className='flex items-center'>
+                                <div className='w-3 h-3 bg-red-500 rounded-full mr-2'></div>
+                                <span className='text-sm text-gray-600 dark:text-gray-300'>
+                                    Outliers
+                                </span>
+                            </div>
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300'>
+                            {detectOutliers(data).length} outliers detected (
+                            {(
+                                (detectOutliers(data).length / data.length) *
+                                100
+                            ).toFixed(1)}
+                            %)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Field Comparison Line Chart */}
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h3 className='text-lg font-medium mb-6 text-gray-900 dark:text-white'>
+                    📈 Field-wise Salary Progression
+                </h3>
+                <p className='text-sm text-gray-600 dark:text-gray-300 mb-4'>
+                    Compare salary growth across different tech fields. Shows
+                    which specializations offer better long-term earning
+                    potential.
+                </p>
+
+                <div className='relative h-80'>
+                    <svg viewBox='0 0 800 300' className='w-full h-full'>
+                        {(() => {
+                            const fieldData = createFieldTrendData(data);
+                            if (fieldData.length === 0) return null;
+
+                            const allSalaries = fieldData.flatMap((field) =>
+                                field.trend.map((t) => t.avgSalary)
+                            );
+                            const maxSalary = Math.max(...allSalaries);
+                            const minSalary = Math.min(...allSalaries);
+                            const maxYears = 15;
+
+                            const scaleX = (years: number) =>
+                                (years / maxYears) * 700 + 50;
+                            const scaleY = (salary: number) =>
+                                250 -
+                                ((salary - minSalary) /
+                                    (maxSalary - minSalary)) *
+                                    200;
+
+                            const colors = [
+                                '#3B82F6',
+                                '#10B981',
+                                '#F59E0B',
+                                '#EF4444',
+                                '#8B5CF6',
+                                '#F97316',
+                            ];
+
+                            return (
+                                <>
+                                    {/* Grid lines */}
+                                    {[0, 3, 5, 7, 10, 15].map((year) => (
+                                        <line
+                                            key={year}
+                                            x1={scaleX(year)}
+                                            y1={50}
+                                            x2={scaleX(year)}
+                                            y2={250}
+                                            stroke='currentColor'
+                                            strokeWidth={
+                                                year % 5 === 0 ? '1' : '0.5'
+                                            }
+                                            className='text-gray-200 dark:text-gray-600'
+                                            opacity={
+                                                year % 5 === 0 ? '0.5' : '0.2'
+                                            }
+                                        />
+                                    ))}
+
+                                    {/* Salary grid lines */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <line
+                                                key={i}
+                                                x1={50}
+                                                y1={scaleY(salary)}
+                                                x2={750}
+                                                y2={scaleY(salary)}
+                                                stroke='currentColor'
+                                                strokeWidth='0.5'
+                                                className='text-gray-200 dark:text-gray-600'
+                                                opacity='0.3'
+                                            />
+                                        );
+                                    })}
+
+                                    {/* Field trend lines */}
+                                    {fieldData.map((field, fieldIndex) => {
+                                        const path = field.trend
+                                            .map(
+                                                (point, i) =>
+                                                    `${
+                                                        i === 0 ? 'M' : 'L'
+                                                    } ${scaleX(
+                                                        point.years
+                                                    )} ${scaleY(
+                                                        point.avgSalary
+                                                    )}`
+                                            )
+                                            .join(' ');
+
+                                        return (
+                                            <g key={field.field}>
+                                                <path
+                                                    d={path}
+                                                    fill='none'
+                                                    stroke={
+                                                        colors[
+                                                            fieldIndex %
+                                                                colors.length
+                                                        ]
+                                                    }
+                                                    strokeWidth='2'
+                                                    strokeLinecap='round'
+                                                    strokeLinejoin='round'
+                                                />
+                                                {field.trend.map((point, i) => (
+                                                    <circle
+                                                        key={i}
+                                                        cx={scaleX(point.years)}
+                                                        cy={scaleY(
+                                                            point.avgSalary
+                                                        )}
+                                                        r='3'
+                                                        fill={
+                                                            colors[
+                                                                fieldIndex %
+                                                                    colors.length
+                                                            ]
+                                                        }
+                                                        className='hover:r-5 transition-all cursor-pointer'
+                                                    />
+                                                ))}
+                                            </g>
+                                        );
+                                    })}
+
+                                    {/* X-axis labels */}
+                                    {[0, 5, 10, 15].map((year) => (
+                                        <text
+                                            key={year}
+                                            x={scaleX(year)}
+                                            y={270}
+                                            textAnchor='middle'
+                                            className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                        >
+                                            {year}
+                                        </text>
+                                    ))}
+
+                                    {/* Y-axis labels */}
+                                    {Array.from({ length: 6 }, (_, i) => {
+                                        const salary =
+                                            minSalary +
+                                            (maxSalary - minSalary) * (i / 5);
+                                        return (
+                                            <text
+                                                key={i}
+                                                x={40}
+                                                y={scaleY(salary) + 3}
+                                                textAnchor='end'
+                                                className='fill-current text-xs text-gray-600 dark:text-gray-300'
+                                            >
+                                                {(salary / 1000).toFixed(0)}k
+                                            </text>
+                                        );
+                                    })}
+
+                                    {/* Axis labels */}
+                                    <text
+                                        x={400}
+                                        y={295}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                    >
+                                        Years of Experience
+                                    </text>
+                                    <text
+                                        x={20}
+                                        y={150}
+                                        textAnchor='middle'
+                                        className='fill-current text-sm text-gray-700 dark:text-gray-300'
+                                        transform='rotate(-90 20 150)'
+                                    >
+                                        Salary (NOK)
+                                    </text>
+                                </>
+                            );
+                        })()}
+                    </svg>
+
+                    {/* Legend */}
+                    <div className='grid grid-cols-3 gap-2 mt-4 text-sm'>
+                        {createFieldTrendData(data).map((field, i) => {
+                            const colors = [
+                                '#3B82F6',
+                                '#10B981',
+                                '#F59E0B',
+                                '#EF4444',
+                                '#8B5CF6',
+                                '#F97316',
+                            ];
+                            return (
+                                <div
+                                    key={field.field}
+                                    className='flex items-center'
+                                >
+                                    <div
+                                        className='w-4 h-0.5 mr-2'
+                                        style={{
+                                            backgroundColor:
+                                                colors[i % colors.length],
+                                        }}
+                                    ></div>
+                                    <span
+                                        className='text-gray-600 dark:text-gray-300 truncate'
+                                        title={field.field}
+                                    >
+                                        {field.field.length > 20
+                                            ? field.field.substring(0, 20) +
+                                              '...'
+                                            : field.field}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -455,4 +1117,100 @@ function getSalaryDistribution(data: SalaryData[]) {
             percentage,
         };
     });
+}
+
+// Function to detect outliers using IQR method
+function detectOutliers(data: SalaryData[]) {
+    const salaries = data.map((item) => item.lønn).sort((a, b) => a - b);
+    const q1Index = Math.floor(salaries.length * 0.25);
+    const q3Index = Math.floor(salaries.length * 0.75);
+    const q1 = salaries[q1Index];
+    const q3 = salaries[q3Index];
+    const iqr = q3 - q1;
+    const lowerBound = q1 - 1.5 * iqr;
+    const upperBound = q3 + 1.5 * iqr;
+
+    return data.filter(
+        (item) => item.lønn < lowerBound || item.lønn > upperBound
+    );
+}
+
+// Function to create salary trend data for line chart
+function createSalaryTrendData(data: SalaryData[]) {
+    const experiencePoints = [
+        ...new Set(data.map((item) => item['års erfaring'])),
+    ]
+        .sort((a, b) => a - b)
+        .filter((exp) => exp <= 20); // Focus on first 20 years
+
+    const trendData = experiencePoints
+        .map((years) => {
+            const yearData = data.filter(
+                (item) => item['års erfaring'] === years
+            );
+            if (yearData.length === 0) return null;
+
+            const salaries = yearData.map((item) => item.lønn);
+            const avgSalary =
+                salaries.reduce((sum, sal) => sum + sal, 0) / salaries.length;
+            const medianSalary = salaries.sort((a, b) => a - b)[
+                Math.floor(salaries.length / 2)
+            ];
+
+            return {
+                years,
+                avgSalary: Math.round(avgSalary),
+                medianSalary: Math.round(medianSalary),
+                count: yearData.length,
+                minSalary: Math.min(...salaries),
+                maxSalary: Math.max(...salaries),
+            };
+        })
+        .filter((item): item is NonNullable<typeof item> => item !== null);
+
+    return trendData;
+}
+
+// Function to create field-based trend data
+function createFieldTrendData(data: SalaryData[]) {
+    const fields = [...new Set(data.map((item) => item.fag))];
+    const experienceYears = [0, 1, 2, 3, 5, 7, 10, 15];
+
+    const fieldData = fields
+        .map((field) => {
+            const fieldDataItems = data.filter((item) => item.fag === field);
+            if (fieldDataItems.length < 10) return null; // Only include fields with enough data
+
+            const trendPoints = experienceYears
+                .map((years) => {
+                    const yearData = fieldDataItems.filter(
+                        (item) =>
+                            item['års erfaring'] >= years &&
+                            item['års erfaring'] < years + 2
+                    );
+                    if (yearData.length === 0) return null;
+
+                    const avgSalary =
+                        yearData.reduce((sum, item) => sum + item.lønn, 0) /
+                        yearData.length;
+                    return {
+                        years,
+                        avgSalary: Math.round(avgSalary),
+                        count: yearData.length,
+                    };
+                })
+                .filter(
+                    (item): item is NonNullable<typeof item> => item !== null
+                );
+
+            return {
+                field,
+                trend: trendPoints,
+                totalCount: fieldDataItems.length,
+            };
+        })
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        .slice(0, 6); // Top 6 fields
+
+    return fieldData;
 }
