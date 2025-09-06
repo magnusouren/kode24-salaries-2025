@@ -10,7 +10,7 @@ An interactive web application that analyzes **real Norwegian IT salaries** with
 
 ## 🚀 Live Demo
 
-**[View Live Application →](https://salaries2025-rijnojaiy-magnusourens-projects.vercel.app)**
+**[View Live Application →](kode24-salaries-2025.vercel.app)**
 
 ## 📊 Features
 
