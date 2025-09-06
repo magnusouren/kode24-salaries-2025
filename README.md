@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🇳🇴 Kode24 Salary Analysis 2025
 
-## Getting Started
+> **Built in minutes with AI assistance** - A comprehensive Norwegian IT salary analysis tool using live data from Kode24's 2025 salary survey.
 
-First, run the development server:
+## ✨ What This Is
+
+An interactive web application that analyzes **real Norwegian IT salaries** with advanced filtering, visualizations, and insights specifically designed for **students and entry-level professionals**.
+
+**🤖 AI-Powered Development:** This entire application was built using GitHub Copilot in just a few minutes, showcasing how AI can accelerate modern web development.
+
+## 🚀 Live Demo
+
+**[View Live Application →](https://salaries2025-rijnojaiy-magnusourens-projects.vercel.app)**
+
+## 📊 Features
+
+- **📈 Interactive Charts:** Line charts, dot plots, and trend analysis
+- **🎯 Entry-Level Focus:** Specialized insights for new graduates
+- **🔍 Advanced Filtering:** By gender, field, location, experience, salary range
+- **📋 Sortable Data Table:** Complete salary breakdown with pagination
+- **🌓 Dark Mode:** Full dark/light theme support
+- **📱 Mobile Responsive:** Works perfectly on all devices
+
+## 🛠️ Tech Stack
+
+- **Next.js 15** with TypeScript
+- **Tailwind CSS 4** for styling
+- **Real-time API** integration with Kode24 data
+- **Native SVG charts** for performance
+- **Deployed on Vercel**
+
+## 🚀 Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📡 Data Source
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Live data from [Kode24's 2025 Norwegian IT Salary Survey](https://www.kode24.no/files/2025/09/01/kode24s%20l%C3%B8nnstall%202025.json)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*⚡ Built with GitHub Copilot in minutes - demonstrating the power of AI-assisted development*
