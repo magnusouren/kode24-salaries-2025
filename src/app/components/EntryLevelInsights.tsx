@@ -214,7 +214,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                         <span className='font-medium text-sm'>
                                             {field}
                                         </span>
-                                        <span className='text-xs text-gray-500'>
+                                        <span className='text-xs text-gray-500 dark:text-gray-400'>
                                             {count} stillinger
                                         </span>
                                     </div>
@@ -222,7 +222,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                         <span className='text-green-600 font-medium'>
                                             {avgFieldSalary.toLocaleString()} kr
                                         </span>
-                                        <span className='text-gray-500'>
+                                        <span className='text-gray-500 dark:text-gray-400'>
                                             {percentage}% av entry-level
                                         </span>
                                     </div>
@@ -267,12 +267,12 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                                 ? `${education} år (master-nivå)`
                                                 : `${education} år (PhD/høyere)`}
                                         </span>
-                                        <span className='text-xs text-gray-500'>
+                                        <span className='text-xs text-gray-500 dark:text-gray-400'>
                                             {count} personer
                                         </span>
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <span className='text-lg font-bold text-green-600'>
+                                        <span className='text-lg font-bold text-green-600 dark:text-green-400'>
                                             {avgSalary.toLocaleString()} kr
                                         </span>
                                         <div className='w-32 bg-gray-200 rounded-full h-3 dark:bg-gray-700'>
@@ -319,7 +319,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                         >
                             <div className='flex justify-between items-center mb-2'>
                                 <h4 className='font-medium'>{location}</h4>
-                                <span className='text-xs text-gray-500'>
+                                <span className='text-xs text-gray-500 dark:text-gray-400'>
                                     {count} stillinger
                                 </span>
                             </div>

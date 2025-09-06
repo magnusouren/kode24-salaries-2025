@@ -171,7 +171,7 @@ export default function Home() {
                     onFiltersChange={setFilters}
                 />
 
-                <SalaryCharts data={filteredData} />
+                {/* <SalaryCharts data={filteredData} /> */}
 
                 <CareerProgression data={filteredData} />
 

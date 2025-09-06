@@ -99,7 +99,7 @@ export default function SalaryFilters({
                         onChange={(e) =>
                             handleFilterChange('fag', e.target.value)
                         }
-                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                     >
                         <option value=''>Alle</option>
                         {uniqueFields.map((field) => (
@@ -111,7 +111,7 @@ export default function SalaryFilters({
                 </div>
 
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300'>
                         Arbeidssted
                     </label>
                     <select
@@ -119,7 +119,7 @@ export default function SalaryFilters({
                         onChange={(e) =>
                             handleFilterChange('arbeidssted', e.target.value)
                         }
-                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                     >
                         <option value=''>Alle</option>
                         {uniqueLocations.map((location) => (
@@ -131,7 +131,7 @@ export default function SalaryFilters({
                 </div>
 
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300'>
                         Jobbtype
                     </label>
                     <select
@@ -139,7 +139,7 @@ export default function SalaryFilters({
                         onChange={(e) =>
                             handleFilterChange('jobbtype', e.target.value)
                         }
-                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                     >
                         <option value=''>Alle</option>
                         {uniqueJobTypes.map((jobType) => (
@@ -153,7 +153,7 @@ export default function SalaryFilters({
 
             <div className='grid md:grid-cols-2 gap-4'>
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300'>
                         Lønnsområde (kr)
                     </label>
                     <div className='flex gap-2'>
@@ -167,7 +167,7 @@ export default function SalaryFilters({
                                     Number(e.target.value)
                                 )
                             }
-                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                         />
                         <input
                             type='number'
@@ -179,13 +179,13 @@ export default function SalaryFilters({
                                     Number(e.target.value)
                                 )
                             }
-                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300'>
                         Års erfaring
                     </label>
                     <div className='flex gap-2'>
@@ -199,7 +199,7 @@ export default function SalaryFilters({
                                     Number(e.target.value)
                                 )
                             }
-                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                         />
                         <input
                             type='number'
@@ -211,7 +211,7 @@ export default function SalaryFilters({
                                     Number(e.target.value)
                                 )
                             }
-                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600'
                         />
                     </div>
                 </div>
