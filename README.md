@@ -14,20 +14,20 @@ An interactive web application that analyzes **real Norwegian IT salaries** with
 
 ## 📊 Features
 
-- **📈 Interactive Charts:** Line charts, dot plots, and trend analysis
-- **🎯 Entry-Level Focus:** Specialized insights for new graduates
-- **🔍 Advanced Filtering:** By gender, field, location, experience, salary range
-- **📋 Sortable Data Table:** Complete salary breakdown with pagination
-- **🌓 Dark Mode:** Full dark/light theme support
-- **📱 Mobile Responsive:** Works perfectly on all devices
+-   **📈 Interactive Charts:** Line charts, dot plots, and trend analysis
+-   **🎯 Entry-Level Focus:** Specialized insights for new graduates
+-   **🔍 Advanced Filtering:** By gender, field, location, experience, salary range
+-   **📋 Sortable Data Table:** Complete salary breakdown with pagination
+-   **🌓 Dark Mode:** Full dark/light theme support
+-   **📱 Mobile Responsive:** Works perfectly on all devices
 
 ## 🛠️ Tech Stack
 
-- **Next.js 15** with TypeScript
-- **Tailwind CSS 4** for styling
-- **Real-time API** integration with Kode24 data
-- **Native SVG charts** for performance
-- **Deployed on Vercel**
+-   **Next.js 15** with TypeScript
+-   **Tailwind CSS 4** for styling
+-   **Real-time API** integration with Kode24 data
+-   **Native SVG charts** for performance
+-   **Deployed on Vercel**
 
 ## 🚀 Quick Start
 
@@ -44,4 +44,4 @@ Live data from [Kode24's 2025 Norwegian IT Salary Survey](https://www.kode24.no/
 
 ---
 
-*⚡ Built with GitHub Copilot in minutes - demonstrating the power of AI-assisted development*
+_⚡ Built with GitHub Copilot in minutes - demonstrating the power of AI-assisted development_
