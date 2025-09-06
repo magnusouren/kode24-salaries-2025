@@ -77,18 +77,18 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
     }
 
     return (
-        <div className='bg-white shadow rounded-lg'>
-            <div className='p-6 border-b'>
+        <div className='bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-200 dark:border-gray-700'>
+            <div className='p-6 border-b border-gray-200 dark:border-gray-600'>
                 <div className='mb-4'>
-                    <h2 className='text-2xl font-bold mb-2'>
+                    <h2 className='text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100'>
                         📋 Detaljert lønnsdata
                     </h2>
-                    <p className='text-gray-600 text-sm mb-3'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm mb-3'>
                         Komplett oversikt over alle lønnsoppgaver som matcher
                         dine filtere. Klikk på kolonneoverskriftene for å
                         sortere dataene.
                     </p>
-                    <div className='bg-gray-50 rounded-lg p-3 text-xs text-gray-700'>
+                    <div className='bg-gray-50 dark:bg-gray-700 rounded-lg p-3 text-xs text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600'>
                         <strong>Viser:</strong> {data.length.toLocaleString()}{' '}
                         av totalt {totalCount.toLocaleString()} oppføringer
                     </div>
@@ -96,29 +96,33 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                 <div className='flex justify-between items-center'>
                     <div></div> {/* Spacer */}
                     <div className='flex items-center gap-2'>
-                        <label className='text-sm font-medium'>Vis:</label>
+                        <label className='text-sm font-medium text-gray-700 dark:text-gray-300'>
+                            Vis:
+                        </label>
                         <select
                             value={itemsPerPage}
                             onChange={(e) =>
                                 handleItemsPerPageChange(Number(e.target.value))
                             }
-                            className='p-1 border border-gray-300 rounded'
+                            className='p-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100'
                         >
                             <option value={25}>25</option>
                             <option value={50}>50</option>
                             <option value={100}>100</option>
                         </select>
-                        <span className='text-sm'>per side</span>
+                        <span className='text-sm text-gray-700 dark:text-gray-300'>
+                            per side
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div className='overflow-x-auto'>
                 <table className='w-full'>
-                    <thead className='bg-gray-50'>
+                    <thead className='bg-gray-50 dark:bg-gray-700'>
                         <tr>
                             <th
-                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100'
+                                className='px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600'
                                 onClick={() => handleSort('kjønn')}
                             >
                                 Kjønn {getSortIcon('kjønn')}
@@ -175,9 +179,12 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className='bg-white divide-y divide-gray-200'>
+                    <tbody className='bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800'>
                         {paginatedData.map((item, index) => (
-                            <tr key={index} className='hover:bg-gray-50'>
+                            <tr
+                                key={index}
+                                className='hover:bg-gray-50 dark:hover:bg-gray-700'
+                            >
                                 <td className='px-4 py-4 whitespace-nowrap text-sm'>
                                     <span className='capitalize'>
                                         {item.kjønn}
@@ -215,8 +222,8 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                     <span
                                         className={`px-2 py-1 rounded text-xs font-medium ${
                                             item['inkludert bonus?']
-                                                ? 'bg-green-100 text-green-800'
-                                                : 'bg-gray-100 text-gray-800'
+                                                ? 'bg-green-100 text-green-800 dark:bg-green-800/20 dark:text-green-200'
+                                                : 'bg-gray-100 text-gray-800 dark:bg-red-700/20 dark:text-gray-300'
                                         }`}
                                     >
                                         {item['inkludert bonus?']
@@ -228,8 +235,8 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                     <span
                                         className={`px-2 py-1 rounded text-xs font-medium ${
                                             item['inkludert provisjon?']
-                                                ? 'bg-blue-100 text-blue-800'
-                                                : 'bg-gray-100 text-gray-800'
+                                                ? 'bg-blue-100 text-blue-800 dark:bg-green-800/20 dark:text-green-200'
+                                                : 'bg-gray-100 text-gray-800 dark:bg-red-700/20 dark:text-gray-300'
                                         }`}
                                     >
                                         {item['inkludert provisjon?']
@@ -270,7 +277,7 @@ export default function SalaryTable({ data, totalCount }: SalaryTableProps) {
                                         className={`px-3 py-1 border rounded ${
                                             currentPage === page
                                                 ? 'bg-blue-500 text-white border-blue-500'
-                                                : 'hover:bg-gray-50'
+                                                : 'hover:bg-gray-50 dark:hover:bg-gray-700'
                                         }`}
                                     >
                                         {page}

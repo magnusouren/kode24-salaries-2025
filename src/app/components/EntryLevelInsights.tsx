@@ -13,11 +13,13 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
 
     if (entryLevelData.length === 0) {
         return (
-            <div className='bg-white shadow rounded-lg p-6'>
-                <h2 className='text-2xl font-bold mb-4'>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h2 className='text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100'>
                     Innsikt for studenter og nyutdannede
                 </h2>
-                <p>Ingen data tilgjengelig for entry-level stillinger.</p>
+                <p className='text-gray-600 dark:text-gray-400'>
+                    Ingen data tilgjengelig for entry-level stillinger.
+                </p>
             </div>
         );
     }
@@ -95,19 +97,19 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
         .slice(0, 8);
 
     return (
-        <div className='bg-white shadow rounded-lg p-6'>
+        <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
             <div className='mb-6'>
-                <h2 className='text-2xl font-bold mb-3'>
+                <h2 className='text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100'>
                     📚 Innsikt for studenter og nyutdannede
                 </h2>
-                <div className='bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 mb-4'>
-                    <p className='text-sm text-gray-700 mb-2'>
+                <div className='bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-4 mb-4 border border-green-200 dark:border-green-800'>
+                    <p className='text-sm text-gray-700 dark:text-gray-300 mb-2'>
                         <strong>Entry-level stillinger</strong> defineres som
                         jobber som krever 0-2 års yrkeserfaring. Dette er typisk
                         hvor studenter og nyutdannede starter sin karriere i
                         IT-bransjen.
                     </p>
-                    <p className='text-sm text-gray-600'>
+                    <p className='text-sm text-gray-600 dark:text-gray-400'>
                         Dataene under viser lønnsstatistikk, populære fagområder
                         og beste arbeidsplasser for de som er i starten av sin
                         teknologikarriere.
@@ -117,32 +119,32 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
 
             {/* Key statistics */}
             <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8'>
-                <div className='bg-blue-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-blue-800'>
+                <div className='bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800'>
+                    <h3 className='font-semibold text-blue-800 dark:text-blue-200'>
                         Entry-level stillinger
                     </h3>
-                    <p className='text-2xl font-bold text-blue-600'>
+                    <p className='text-2xl font-bold text-blue-600 dark:text-blue-400'>
                         {entryLevelData.length}
                     </p>
-                    <p className='text-xs text-blue-600'>
+                    <p className='text-xs text-blue-600 dark:text-blue-400'>
                         Jobber som krever 0-2 års erfaring
                     </p>
                 </div>
 
-                <div className='bg-green-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-green-800'>
+                <div className='bg-green-50 dark:bg-green-900/30 p-4 rounded-lg border border-green-200 dark:border-green-800'>
+                    <h3 className='font-semibold text-green-800 dark:text-green-200'>
                         Gjennomsnittlig startlønn
                     </h3>
-                    <p className='text-2xl font-bold text-green-600'>
+                    <p className='text-2xl font-bold text-green-600 dark:text-green-400'>
                         {avgEntryLevelSalary.toLocaleString()} kr
                     </p>
-                    <p className='text-xs text-green-600'>
+                    <p className='text-xs text-green-600 dark:text-green-400'>
                         Median: {medianEntryLevelSalary.toLocaleString()} kr/år
                     </p>
                 </div>
 
-                <div className='bg-purple-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-purple-800'>
+                <div className='bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg border border-purple-200 dark:border-purple-800'>
+                    <h3 className='font-semibold text-purple-800 dark:text-purple-200'>
                         Nyutdannede
                     </h3>
                     <p className='text-2xl font-bold text-purple-600'>
@@ -155,11 +157,11 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                     </p>
                 </div>
 
-                <div className='bg-orange-50 p-4 rounded-lg'>
-                    <h3 className='font-semibold text-orange-800'>
+                <div className='bg-orange-50 p-4 rounded-lg dark:bg-orange-500/20 border border-orange-200 dark:border-orange-800'>
+                    <h3 className='font-semibold text-orange-800 dark:text-orange-200'>
                         Variabel lønn
                     </h3>
-                    <p className='text-lg font-bold text-orange-600'>
+                    <p className='text-lg font-bold text-orange-600 dark:text-orange-400'>
                         {Math.round(
                             (entryLevelData.filter(
                                 (item) =>
@@ -171,7 +173,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                         )}
                         %
                     </p>
-                    <p className='text-xs text-orange-600'>
+                    <p className='text-xs text-orange-600 dark:text-orange-400'>
                         mottar bonus eller provisjon i tillegg til fastlønn
                     </p>
                 </div>
@@ -180,10 +182,10 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
             <div className='grid lg:grid-cols-2 gap-8'>
                 {/* Top fields for entry-level */}
                 <div>
-                    <h3 className='text-lg font-semibold mb-3'>
+                    <h3 className='text-lg font-semibold mb-3 dark:text-gray-100'>
                         🔥 Mest etterspurte fagområder
                     </h3>
-                    <p className='text-sm text-gray-600 mb-4'>
+                    <p className='text-sm text-gray-600 mb-4 dark:text-gray-400'>
                         Fagområder med flest entry-level stillinger og deres
                         gjennomsnittslønninger. Dette gir deg oversikt over hvor
                         det er best muligheter som nyutdannet.
@@ -206,7 +208,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                             return (
                                 <div
                                     key={field}
-                                    className='border rounded-lg p-3'
+                                    className='border rounded-lg p-3 dark:border-gray-700'
                                 >
                                     <div className='flex justify-between items-start mb-2'>
                                         <span className='font-medium text-sm'>
@@ -224,7 +226,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                             {percentage}% av entry-level
                                         </span>
                                     </div>
-                                    <div className='w-full bg-gray-200 rounded-full h-2 mt-2'>
+                                    <div className='w-full bg-gray-200 rounded-full h-2 mt-2 dark:bg-gray-700'>
                                         <div
                                             className='bg-blue-500 h-2 rounded-full'
                                             style={{ width: `${percentage}%` }}
@@ -241,7 +243,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                     <h3 className='text-lg font-semibold mb-3'>
                         🎓 Utdanning og lønnspåvirkning
                     </h3>
-                    <p className='text-sm text-gray-600 mb-4'>
+                    <p className='text-sm text-gray-600 mb-4 dark:text-gray-400'>
                         Sammenheng mellom utdanningslengde og startlønn for
                         entry-level stillinger. Viser hvor mye ekstra utdanning
                         kan påvirke lønnen din som nyutdannet.
@@ -251,7 +253,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                             ({ education, avgSalary, count }) => (
                                 <div
                                     key={education}
-                                    className='border rounded-lg p-3'
+                                    className='border rounded-lg p-3 dark:border-gray-700'
                                 >
                                     <div className='flex justify-between items-center mb-2'>
                                         <span className='font-medium'>
@@ -273,7 +275,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                         <span className='text-lg font-bold text-green-600'>
                                             {avgSalary.toLocaleString()} kr
                                         </span>
-                                        <div className='w-32 bg-gray-200 rounded-full h-3'>
+                                        <div className='w-32 bg-gray-200 rounded-full h-3 dark:bg-gray-700'>
                                             <div
                                                 className='bg-green-500 h-3 rounded-full'
                                                 style={{
@@ -304,7 +306,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                 <h3 className='text-lg font-semibold mb-3'>
                     📍 Best betalte arbeidsplasser
                 </h3>
-                <p className='text-sm text-gray-600 mb-4'>
+                <p className='text-sm text-gray-600 mb-4 dark:text-gray-400'>
                     Geografiske områder og byer med høyest
                     gjennomsnittslønninger for entry-level stillinger. Nyttig
                     for å planlegge hvor du vil starte karrieren din.
@@ -313,7 +315,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                     {topLocations.map(({ location, avgSalary, count }) => (
                         <div
                             key={location}
-                            className='border rounded-lg p-4 hover:shadow-md transition-shadow'
+                            className='border rounded-lg p-4 hover:shadow-md transition-shadow dark:border-gray-700'
                         >
                             <div className='flex justify-between items-center mb-2'>
                                 <h4 className='font-medium'>{location}</h4>
@@ -326,7 +328,7 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                                     {avgSalary.toLocaleString()} kr
                                 </span>
                                 <div className='text-right'>
-                                    <div className='text-sm text-gray-600'>
+                                    <div className='text-sm text-gray-600 dark:text-gray-400'>
                                         gjennomsnitt
                                     </div>
                                 </div>
@@ -337,21 +339,21 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
             </div>
 
             {/* Tips for students */}
-            <div className='mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6'>
-                <h3 className='text-lg font-semibold mb-3 text-blue-800'>
+            <div className='mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800'>
+                <h3 className='text-lg font-semibold mb-3 text-blue-800 dark:text-blue-200'>
                     💡 Karrieretips for studenter og jobbsøkere
                 </h3>
-                <p className='text-sm text-blue-700 mb-4'>
+                <p className='text-sm text-blue-700 mb-4 dark:text-blue-300'>
                     Basert på lønnsanalysen over, her er noen praktiske tips for
                     å maksimere dine karrieremuligheter og startlønn i
                     IT-bransjen.
                 </p>
                 <div className='grid md:grid-cols-2 gap-4 text-sm'>
                     <div>
-                        <h4 className='font-medium text-blue-700 mb-2'>
+                        <h4 className='font-medium text-blue-700 mb-2 dark:text-blue-300'>
                             Høyest betalte entry-level fagområder:
                         </h4>
-                        <ul className='space-y-1 text-blue-600'>
+                        <ul className='space-y-1 text-blue-600 dark:text-blue-400'>
                             {sortedEntryLevelFields
                                 .slice(0, 3)
                                 .map(([field]) => {
@@ -374,10 +376,10 @@ export default function EntryLevelInsights({ data }: EntryLevelInsightsProps) {
                         </ul>
                     </div>
                     <div>
-                        <h4 className='font-medium text-blue-700 mb-2'>
+                        <h4 className='font-medium text-blue-700 mb-2 dark:text-blue-300'>
                             Beste steder å starte karrieren:
                         </h4>
-                        <ul className='space-y-1 text-blue-600'>
+                        <ul className='space-y-1 text-blue-600 dark:text-blue-400'>
                             {topLocations
                                 .slice(0, 3)
                                 .map(({ location, avgSalary }) => (

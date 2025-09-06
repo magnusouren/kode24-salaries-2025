@@ -79,17 +79,17 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
     return (
         <div className='space-y-8'>
             {/* Experience vs Salary Chart */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
                 <div className='mb-6'>
-                    <h2 className='text-2xl font-bold mb-3'>
+                    <h2 className='text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100'>
                         📈 Lønnsutvikling etter erfaring
                     </h2>
-                    <p className='text-gray-600 text-sm mb-4'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm mb-4'>
                         Oversikt over hvordan lønnen utvikler seg med økt
                         yrkeserfaring. Gruppene viser både gjennomsnitt og
                         median for å gi et komplett bilde.
                     </p>
-                    <div className='bg-yellow-50 rounded-lg p-3 text-xs text-gray-700'>
+                    <div className='bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 text-xs text-gray-700 dark:text-gray-300 border border-yellow-200 dark:border-yellow-800'>
                         <strong>Lesetips:</strong> Medianlønn er ofte mer
                         representativ enn gjennomsnitt da den ikke påvirkes like
                         mye av ekstreme høye eller lave lønninger.
@@ -113,7 +113,7 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                             return (
                                 <div
                                     key={group}
-                                    className='border rounded-lg p-4'
+                                    className='border rounded-lg p-4 dark:border-gray-700'
                                 >
                                     <div className='flex justify-between items-center mb-3'>
                                         <h3 className='font-semibold text-lg'>
@@ -129,7 +129,7 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                                             <div className='text-2xl font-bold text-green-600 mb-1'>
                                                 {avgSalary.toLocaleString()} kr
                                             </div>
-                                            <div className='text-sm text-gray-600'>
+                                            <div className='text-sm text-gray-600 dark:text-gray-400'>
                                                 Gjennomsnitt
                                             </div>
                                         </div>
@@ -138,13 +138,13 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                                                 {medianSalary.toLocaleString()}{' '}
                                                 kr
                                             </div>
-                                            <div className='text-sm text-gray-600'>
+                                            <div className='text-sm text-gray-600 dark:text-gray-400'>
                                                 Median
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className='w-full bg-gray-200 rounded-full h-4 mb-2'>
+                                    <div className='w-full bg-gray-200 rounded-full h-4 mb-2 dark:bg-gray-700'>
                                         <div
                                             className='bg-gradient-to-r from-green-400 to-green-600 h-4 rounded-full flex items-center justify-end pr-2'
                                             style={{ width: `${percentage}%` }}
@@ -155,7 +155,7 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                                         </div>
                                     </div>
 
-                                    <div className='flex justify-between text-xs text-gray-500'>
+                                    <div className='flex justify-between text-xs text-gray-500 dark:text-gray-400'>
                                         <span>
                                             Min: {minSalary.toLocaleString()} kr
                                         </span>
@@ -171,8 +171,8 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
             </div>
 
             {/* Gender Pay Gap Analysis */}
-            <div className='bg-white shadow rounded-lg p-6'>
-                <h2 className='text-2xl font-bold mb-6'>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h2 className='text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100'>
                     ⚖️ Kjønnsforskjeller i lønn
                 </h2>
                 <div className='space-y-4'>
@@ -191,28 +191,28 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                             }) => (
                                 <div
                                     key={group}
-                                    className='border rounded-lg p-4'
+                                    className='border border-gray-200 dark:border-gray-600 rounded-lg p-4'
                                 >
                                     <div className='flex justify-between items-center mb-3'>
-                                        <h3 className='font-semibold'>
+                                        <h3 className='font-semibold text-gray-900 dark:text-gray-100'>
                                             {group}
                                         </h3>
-                                        <div className='text-sm text-gray-500'>
+                                        <div className='text-sm text-gray-500 dark:text-gray-400'>
                                             {maleCount} menn, {femaleCount}{' '}
                                             kvinner
                                         </div>
                                     </div>
 
                                     <div className='grid md:grid-cols-2 gap-4 mb-3'>
-                                        <div className='bg-blue-50 p-3 rounded'>
-                                            <div className='text-blue-800 font-medium'>
+                                        <div className='bg-blue-50 dark:bg-blue-900/30 p-3 rounded border border-blue-200 dark:border-blue-800'>
+                                            <div className='text-blue-800 dark:text-blue-200 font-medium'>
                                                 👨 Menn
                                             </div>
-                                            <div className='text-xl font-bold text-blue-600'>
+                                            <div className='text-xl font-bold text-blue-600 dark:text-blue-400'>
                                                 {maleAvg.toLocaleString()} kr
                                             </div>
                                         </div>
-                                        <div className='bg-pink-50 p-3 rounded'>
+                                        <div className='bg-pink-50 dark:bg-pink-900/30 p-3 rounded border border-pink-200 dark:border-pink-800'>
                                             <div className='text-pink-800 font-medium'>
                                                 👩 Kvinner
                                             </div>
@@ -225,8 +225,8 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                                     <div
                                         className={`text-center p-2 rounded ${
                                             gap > 0
-                                                ? 'bg-red-50 text-red-700'
-                                                : 'bg-green-50 text-green-700'
+                                                ? 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-200'
+                                                : 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-200'
                                         }`}
                                     >
                                         {gap > 0 ? (
@@ -254,8 +254,8 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
             </div>
 
             {/* Field Comparison: Entry-level vs Experienced */}
-            <div className='bg-white shadow rounded-lg p-6'>
-                <h2 className='text-2xl font-bold mb-6'>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
+                <h2 className='text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100'>
                     🚀 Karriereutvikling per fagområde
                 </h2>
                 <div className='space-y-4'>
@@ -268,7 +268,10 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                             entryCount,
                             expCount,
                         }) => (
-                            <div key={field} className='border rounded-lg p-4'>
+                            <div
+                                key={field}
+                                className='border rounded-lg p-4 dark:border-gray-700'
+                            >
                                 <div className='flex justify-between items-center mb-3'>
                                     <h3 className='font-semibold'>{field}</h3>
                                     <div className='text-sm text-gray-500'>
@@ -278,33 +281,33 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                                 </div>
 
                                 <div className='grid md:grid-cols-3 gap-4 mb-3'>
-                                    <div className='bg-orange-50 p-3 rounded'>
-                                        <div className='text-orange-800 font-medium'>
+                                    <div className='bg-orange-50 p-3 rounded dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800'>
+                                        <div className='text-orange-800 font-medium dark:text-orange-200'>
                                             🌱 Entry-level
                                         </div>
-                                        <div className='text-lg font-bold text-orange-600'>
+                                        <div className='text-lg font-bold text-orange-600 dark:text-orange-400'>
                                             {entryLevel.toLocaleString()} kr
                                         </div>
                                     </div>
-                                    <div className='bg-green-50 p-3 rounded'>
-                                        <div className='text-green-800 font-medium'>
+                                    <div className='bg-green-50 p-3 rounded dark:bg-green-900/30 border border-green-200 dark:border-green-800'>
+                                        <div className='text-green-800 font-medium dark:text-green-200'>
                                             🌳 Erfarne (5+ år)
                                         </div>
-                                        <div className='text-lg font-bold text-green-600'>
+                                        <div className='text-lg font-bold text-green-600 dark:text-green-400'>
                                             {experienced.toLocaleString()} kr
                                         </div>
                                     </div>
-                                    <div className='bg-purple-50 p-3 rounded'>
-                                        <div className='text-purple-800 font-medium'>
+                                    <div className='bg-purple-50 p-3 rounded dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800'>
+                                        <div className='text-purple-800 font-medium dark:text-purple-200'>
                                             📈 Vekstpotensial
                                         </div>
-                                        <div className='text-lg font-bold text-purple-600'>
+                                        <div className='text-lg font-bold text-purple-600 dark:text-purple-400'>
                                             +{growth}%
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className='w-full bg-gray-200 rounded-full h-3'>
+                                <div className='w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700'>
                                     <div
                                         className='bg-gradient-to-r from-orange-400 to-green-400 h-3 rounded-full'
                                         style={{
@@ -329,13 +332,13 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
             </div>
 
             {/* Salary Distribution */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='shadow rounded-lg p-6'>
                 <h2 className='text-2xl font-bold mb-6'>💰 Lønnsfordeling</h2>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {salaryRanges.map(({ range, count, percentage }) => (
                         <div
                             key={range}
-                            className='border rounded-lg p-4 text-center'
+                            className='border rounded-lg p-4 text-center dark:border-gray-700'
                         >
                             <div className='text-lg font-semibold mb-2'>
                                 {range}
@@ -346,7 +349,7 @@ export default function SalaryCharts({ data }: SalaryChartsProps) {
                             <div className='text-sm text-gray-600 mb-3'>
                                 {percentage}% av alle
                             </div>
-                            <div className='w-full bg-gray-200 rounded-full h-2'>
+                            <div className='w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700'>
                                 <div
                                     className='bg-blue-500 h-2 rounded-full'
                                     style={{ width: `${percentage}%` }}

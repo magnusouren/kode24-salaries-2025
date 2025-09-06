@@ -104,36 +104,40 @@ export default function Home() {
 
     if (loading) {
         return (
-            <div className='flex items-center justify-center min-h-screen'>
-                <div className='text-xl'>Loading salary data...</div>
+            <div className='flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900'>
+                <div className='text-xl text-gray-900 dark:text-gray-100'>
+                    Loading salary data...
+                </div>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className='flex items-center justify-center min-h-screen'>
-                <div className='text-xl text-red-600'>Error: {error}</div>
+            <div className='flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900'>
+                <div className='text-xl text-red-600 dark:text-red-400'>
+                    Error: {error}
+                </div>
             </div>
         );
     }
 
     return (
-        <div className='container mx-auto px-4 py-8'>
+        <div className='container mx-auto px-4 py-8 bg-gray-50 dark:bg-gray-900 min-h-screen'>
             <header className='mb-12'>
-                <h1 className='text-4xl font-bold text-center mb-4'>
+                <h1 className='text-4xl font-bold text-center mb-4 text-gray-900 dark:text-gray-100'>
                     Kode24 Lønnstall 2025
                 </h1>
-                <p className='text-center text-gray-600 text-lg mb-6'>
+                <p className='text-center text-gray-600 dark:text-gray-400 text-lg mb-6'>
                     Utforsk lønnsdata for IT-bransjen i Norge
                 </p>
 
                 {/* Descriptive introduction */}
-                <div className='mx-auto bg-blue-50 rounded-lg p-6 mb-8'>
-                    <h2 className='text-xl font-semibold mb-4 text-blue-800'>
+                <div className='mx-auto bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 mb-8 border border-blue-200 dark:border-blue-800'>
+                    <h2 className='text-xl font-semibold mb-4 text-blue-800 dark:text-blue-200'>
                         📊 Om denne lønnsundersøkelsen
                     </h2>
-                    <div className='grid md:grid-cols-2 gap-6 text-sm text-blue-700'>
+                    <div className='grid md:grid-cols-2 gap-6 text-sm text-blue-700 dark:text-blue-300'>
                         <div>
                             <p className='mb-3'>
                                 Denne undersøkelsen inneholder lønnsdata fra{' '}

@@ -24,18 +24,18 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
     return (
         <div className='space-y-8'>
             {/* Career Milestones */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
                 <div className='mb-6'>
-                    <h2 className='text-2xl font-bold mb-3'>
+                    <h2 className='text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100'>
                         🎯 Karrieremilepæler og progresjon
                     </h2>
-                    <p className='text-gray-600 text-sm mb-4'>
+                    <p className='text-gray-600 dark:text-gray-400 text-sm mb-4'>
                         Basert på lønnsdata viser denne seksjonen typiske
                         karrieremilepæler i IT-bransjen. Tallene representerer
                         gjennomsnittslønninger på ulike nivåer basert på
                         erfaring og ansvar.
                     </p>
-                    <div className='bg-blue-50 rounded-lg p-3 text-xs text-gray-700'>
+                    <div className='bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-xs text-gray-700 dark:text-gray-300 border border-blue-200 dark:border-blue-800'>
                         <strong>Tips:</strong> Disse milepælene er veiledende og
                         kan variere betydelig basert på fagområde, arbeidssted,
                         og individuelle ferdigheter.
@@ -67,38 +67,38 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                     {milestone.years}år
                                 </div>
 
-                                <div className='flex-1 bg-gray-50 rounded-lg p-4'>
+                                <div className='flex-1 bg-gray-50 rounded-lg p-4 dark:bg-gray-700 border border-gray-200 dark:border-gray-600'>
                                     <h3 className='font-semibold text-lg mb-2'>
                                         {milestone.title}
                                     </h3>
                                     <div className='grid md:grid-cols-3 gap-4 mb-3'>
                                         <div>
-                                            <div className='text-sm text-gray-600'>
+                                            <div className='text-sm text-gray-600 dark:text-gray-400'>
                                                 Gjennomsnittlønn
                                             </div>
-                                            <div className='text-xl font-bold text-green-600'>
+                                            <div className='text-xl font-bold text-green-600 dark:text-green-200'>
                                                 {milestone.avgSalary.toLocaleString()}{' '}
                                                 kr
                                             </div>
                                         </div>
                                         <div>
-                                            <div className='text-sm text-gray-600'>
+                                            <div className='text-sm text-gray-600 dark:text-gray-400'>
                                                 Antall stillinger
                                             </div>
-                                            <div className='text-xl font-bold text-blue-600'>
+                                            <div className='text-xl font-bold text-blue-600 dark:text-blue-200'>
                                                 {milestone.jobCount}
                                             </div>
                                         </div>
                                         <div>
-                                            <div className='text-sm text-gray-600'>
+                                            <div className='text-sm text-gray-600 dark:text-gray-400'>
                                                 Lønnsområde
                                             </div>
-                                            <div className='text-lg font-bold text-gray-700'>
+                                            <div className='text-lg font-bold text-gray-700 dark:text-gray-300'>
                                                 {milestone.salaryRange}
                                             </div>
                                         </div>
                                     </div>
-                                    <p className='text-gray-700'>
+                                    <p className='text-gray-700 dark:text-gray-300 dark:text-gray-300'>
                                         {milestone.description}
                                     </p>
                                 </div>
@@ -109,7 +109,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
             </div>
 
             {/* Education ROI */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='shadow rounded-lg p-6'>
                 <h2 className='text-2xl font-bold mb-6'>
                     🎓 Utdanning vs. Lønn (Return on Investment)
                 </h2>
@@ -126,24 +126,24 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                         }) => (
                             <div
                                 key={level}
-                                className='border-2 rounded-lg p-4 hover:shadow-lg transition-shadow'
+                                className='border-2 rounded-lg p-4 hover:shadow-lg transition-shadow dark:border-gray-700'
                             >
                                 <h3 className='font-semibold text-lg mb-2'>
                                     {description}
                                 </h3>
                                 <div className='space-y-3'>
-                                    <div className='bg-blue-50 p-3 rounded'>
-                                        <div className='text-sm text-blue-700'>
+                                    <div className='bg-blue-50 p-3 rounded dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'>
+                                        <div className='text-sm text-blue-700 dark:text-blue-300'>
                                             Gjennomsnittlønn
                                         </div>
-                                        <div className='text-xl font-bold text-blue-800'>
+                                        <div className='text-xl font-bold text-blue-800 dark:text-blue-200'>
                                             {avgSalary.toLocaleString()} kr
                                         </div>
                                     </div>
 
                                     <div className='grid grid-cols-2 gap-2 text-sm'>
                                         <div>
-                                            <div className='text-gray-600'>
+                                            <div className='text-gray-600 dark:text-gray-400'>
                                                 Entry-level
                                             </div>
                                             <div className='font-semibold'>
@@ -151,7 +151,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className='text-gray-600'>
+                                            <div className='text-gray-600 dark:text-gray-400'>
                                                 Erfarne (5+ år)
                                             </div>
                                             <div className='font-semibold'>
@@ -161,16 +161,16 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                         </div>
                                     </div>
 
-                                    <div className='bg-green-50 p-2 rounded'>
-                                        <div className='text-xs text-green-700'>
+                                    <div className='bg-green-50 p-2 rounded dark:bg-green-900/30 border border-green-200 dark:border-green-800F'>
+                                        <div className='text-xs text-green-700 dark:text-green-300'>
                                             Vekstpotensial
                                         </div>
-                                        <div className='font-bold text-green-800'>
+                                        <div className='font-bold text-green-800 dark:text-green-200'>
                                             +{roi}%
                                         </div>
                                     </div>
 
-                                    <div className='text-xs text-gray-500'>
+                                    <div className='text-xs text-gray-500 dark:text-gray-400'>
                                         Basert på {count} respondenter
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
             </div>
 
             {/* Beginner-Friendly Skills */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='shadow rounded-lg p-6'>
                 <h2 className='text-2xl font-bold mb-6'>
                     🌱 Best betalte fagområder for nybegynnere
                 </h2>
@@ -196,7 +196,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                         }) => (
                             <div
                                 key={skill}
-                                className='border rounded-lg p-4 hover:shadow-md transition-shadow'
+                                className='border rounded-lg p-4 hover:shadow-md transition-shadow dark:border-gray-700'
                             >
                                 <h3 className='font-semibold mb-3'>{skill}</h3>
 
@@ -205,7 +205,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                         <div className='text-2xl font-bold text-green-600 mb-1'>
                                             {avgSalary.toLocaleString()} kr
                                         </div>
-                                        <div className='text-sm text-gray-600'>
+                                        <div className='text-sm text-gray-600 dark:text-gray-400'>
                                             Gjennomsnitt entry-level
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                         </span>
                                     </div>
 
-                                    <div className='w-full bg-gray-200 rounded-full h-2'>
+                                    <div className='w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700'>
                                         <div
                                             className='bg-green-500 h-2 rounded-full'
                                             style={{
@@ -265,13 +265,16 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
             </div>
 
             {/* Career Paths */}
-            <div className='bg-white shadow rounded-lg p-6'>
+            <div className='shadow rounded-lg p-6'>
                 <h2 className='text-2xl font-bold mb-6'>
                     🛤️ Karriereveier og lønnsprogresjon
                 </h2>
                 <div className='space-y-6'>
                     {careerPaths.map((path, index) => (
-                        <div key={index} className='border rounded-lg p-6'>
+                        <div
+                            key={index}
+                            className='border rounded-lg p-6 dark:border-gray-700'
+                        >
                             <h3 className='font-semibold text-xl mb-4 text-center'>
                                 {path.title}
                             </h3>
@@ -281,14 +284,13 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                     <div key={stageIndex} className='relative'>
                                         {stageIndex <
                                             path.stages.length - 1 && (
-                                            <div className='hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2'>
+                                            <div className='hidden md:block absolute top-1/2 -right-2 transform translate-x-1/2 -translate-y-1/2'>
                                                 <div className='w-4 h-0.5 bg-gray-300'></div>
-                                                <div className='w-0 h-0 border-l-4 border-l-gray-300 border-t-2 border-t-transparent border-b-2 border-b-transparent absolute right-0 top-1/2 transform -translate-y-1/2'></div>
                                             </div>
                                         )}
 
-                                        <div className='bg-gray-50 rounded-lg p-4 text-center'>
-                                            <div className='text-sm font-medium text-gray-600 mb-1'>
+                                        <div className='bg-gray-50 rounded-lg p-4 text-center dark:bg-gray-700'>
+                                            <div className='text-sm font-medium text-gray-600 mb-1 dark:text-gray-300'>
                                                 {stage.experience}
                                             </div>
                                             <div className='font-semibold mb-2'>
@@ -298,7 +300,7 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                                 {stage.salary.toLocaleString()}{' '}
                                                 kr
                                             </div>
-                                            <div className='text-xs text-gray-500'>
+                                            <div className='text-xs text-gray-500 dark:text-gray-400'>
                                                 {stage.description}
                                             </div>
                                         </div>
@@ -306,11 +308,11 @@ export default function CareerProgression({ data }: CareerProgressionProps) {
                                 ))}
                             </div>
 
-                            <div className='mt-4 bg-blue-50 p-4 rounded-lg'>
-                                <h4 className='font-semibold text-blue-800 mb-2'>
+                            <div className='mt-4 bg-blue-50 p-4 rounded-lg dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'>
+                                <h4 className='font-semibold text-blue-800 mb-2 dark:text-blue-200'>
                                     💡 Tips for denne karriereveien:
                                 </h4>
-                                <ul className='text-sm text-blue-700 space-y-1'>
+                                <ul className='text-sm text-blue-700 space-y-1 dark:text-blue-300'>
                                     {path.tips.map((tip, tipIndex) => (
                                         <li key={tipIndex}>• {tip}</li>
                                     ))}

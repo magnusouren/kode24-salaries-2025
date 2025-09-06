@@ -45,20 +45,20 @@ export default function SalaryFilters({
     };
 
     return (
-        <div className='bg-white shadow rounded-lg p-6'>
+        <div className='bg-white dark:bg-gray-800 shadow rounded-lg p-6 border border-gray-200 dark:border-gray-700'>
             <div className='mb-6'>
                 <div className='flex justify-between items-center mb-3'>
-                    <h2 className='text-2xl font-bold'>
+                    <h2 className='text-2xl font-bold text-gray-900 dark:text-gray-100'>
                         🔍 Filtrer og tilpass data
                     </h2>
                     <button
                         onClick={resetFilters}
-                        className='px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors'
+                        className='px-4 py-2 bg-gray-500 dark:bg-gray-600 text-white rounded hover:bg-gray-600 dark:hover:bg-gray-700 transition-colors'
                     >
                         Nullstill filtre
                     </button>
                 </div>
-                <p className='text-gray-600 text-sm mb-4'>
+                <p className='text-gray-600 dark:text-gray-400 text-sm mb-4'>
                     Bruk filtrene under for å tilpasse datavisningen til dine
                     interesser. Du kan kombinere flere filtre for å finne
                     spesifikke lønnsdata som er relevante for deg.
@@ -67,7 +67,7 @@ export default function SalaryFilters({
 
             <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6'>
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
                         Kjønn
                     </label>
                     <select
@@ -75,7 +75,7 @@ export default function SalaryFilters({
                         onChange={(e) =>
                             handleFilterChange('kjønn', e.target.value)
                         }
-                        className='w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        className='w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100'
                     >
                         <option value=''>Alle</option>
                         {uniqueGenders.map((gender) => (
@@ -91,7 +91,7 @@ export default function SalaryFilters({
                 </div>
 
                 <div>
-                    <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
                         Fagområde
                     </label>
                     <select
